@@ -77,6 +77,8 @@ def deletar_produto(id):
     return render_template(page_not_found)
   lista_produtos.remove(produtoDeletado)
   return redirect(url_for('listar_produtos'))
+
+
 # Cria uma rota para caminhos inexistentes 
 # Manipulador de erro 404 (Página não encontrada)
 @app.errorhandler(404)
@@ -89,16 +91,5 @@ def internal_server_error(e):
     return render_template('404.html', error_code=500, error_message="Erro interno no servidor. Tente novamente mais tarde."), 500
 
 #Funcao para executar o flask 
-app.run(debug=True)
-# Revisao Python
-# def somar(num1,num2):
-#   soma = num1+num2
-#   print(soma)
-# numero1 = 10
-# numero2 = 15
-# somar(numero1,numero2)
-
-# numero3 = int(input("Digite um numero: "))
-# numero4 = int(input("Digite um numero: "))
-
-# somar(numero3,numero4)
+if __name__ == "__main__":
+    app.run(debug=True)
