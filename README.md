@@ -35,7 +35,7 @@ Um framework front-end que facilita a criação de páginas responsivas e estilo
 
 ---
 
-##🚀 Tecnologias Utilizadas
+## 🚀 Tecnologias Utilizadas
   -Python 3.x
   -Flask
   -HTML/CSS
@@ -43,7 +43,7 @@ Um framework front-end que facilita a criação de páginas responsivas e estilo
   
 ---
 
-##▶️ Como Executar o Projeto
+## ▶️ Como Executar o Projeto
 
 1. Clone este repositório:
    ```bash
@@ -69,7 +69,7 @@ Um framework front-end que facilita a criação de páginas responsivas e estilo
    http://127.0.0.1:5000
 
 
-##🎨 Como usar o Bootstrap via CDN
+## 🎨 Como usar o Bootstrap via CDN
 
 Para adicionar o Bootstrap às páginas HTML, basta inserir o link CDN dentro da tag <head> do seu arquivo:
 ```html
