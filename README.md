@@ -1,4 +1,4 @@
-#🐍 Super Módulo Flask - Aula 02
+# 🐍 Super Módulo Flask - Aula 02
 
 Bem-vindo ao **Super Módulo Flask Aula 02**, um projeto de continuação em **Python** utilizando a biblioteca **Flask**.
 Nesta etapa, evoluímos o que foi feito na aula anterior, completando o **CRUD** de Produtos e aplicando **Bootstrap** em todas as páginas HTML para dar mais estilo e responsividade à aplicação.
@@ -6,7 +6,8 @@ Nesta etapa, evoluímos o que foi feito na aula anterior, completando o **CRUD**
 Projeto Baseado na 2ª Aula do Prof. Robson – Creditado mais abaixo no texto.
 ---
 
-#@📚 Conteúdo da Aula
+## 📚 Conteúdo da Aula
+
 
 1. **Revisão da Aula Anterior**
   -Rotas estáticas e dinâmicas.
@@ -71,8 +72,8 @@ Um framework front-end que facilita a criação de páginas responsivas e estilo
 ##🎨 Como usar o Bootstrap via CDN
 
 Para adicionar o Bootstrap às páginas HTML, basta inserir o link CDN dentro da tag <head> do seu arquivo:
-    ```html
-       <head>
+```html
+    <head>
         <meta charset="UTF-8">
         <title>Minha Página Flask</title>
         <!-- Bootstrap CSS -->
@@ -86,11 +87,13 @@ Para adicionar o Bootstrap às páginas HTML, basta inserir o link CDN dentro da
         <!-- Bootstrap JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
       </body>
+```
 
 
-#Com isso, todas as suas páginas Flask já podem aproveitar a mágica do Bootstrap 🎉.
 
-##👨‍🏫 Créditos
+# Com isso, todas as suas páginas Flask já podem aproveitar a mágica do Bootstrap 🎉.
+
+## 👨‍🏫 Créditos
 
 Projeto desenvolvido a partir da aula do Prof. Robson – Escola Infinity Fortaleza/CE
 👉 GitHub do Prof. Robson
