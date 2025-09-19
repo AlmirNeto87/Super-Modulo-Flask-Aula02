@@ -49,7 +49,7 @@ def cadastrar_produtos():
     lista_produtos.append(novoProduto)
     return redirect (url_for('listar_produtos'))
   
-  return render_template('cadastrar_produto.html')
+  return render_template('cadastrar_produto.html', titulo="Cadastrar Produto")
 
 @app.route('/produtos/editar/<int:id>', methods=['GET','POST'])
 def editar_produto(id):
@@ -64,7 +64,7 @@ def editar_produto(id):
     produtoNovo["nome"] = request.form['nome']
     produtoNovo["preco"] = float(request.form['preco'])
     return redirect(url_for('listar_produtos'))
-  return render_template('editar_produto.html', produto = produtoNovo)
+  return render_template('editar_produto.html', produto = produtoNovo, titulo="Editar Produto")
 
 @app.route('/produtos/deletar/<int:id>')
 def deletar_produto(id):

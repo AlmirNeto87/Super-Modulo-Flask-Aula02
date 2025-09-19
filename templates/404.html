@@ -1,31 +1,14 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Erro - Página Não Encontrada</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
-    <header>
-        <h1>Oops! Algo deu errado. {{}} </h1>
-        <nav>
-            <ul>
-                <li><a href="{{ url_for('home') }}">Home</a></li>
-                <li><a href="{{ url_for('sobre') }}">Sobre</a></li>
-                <li><a href="{{ url_for('contatos') }}">Contatos</a></li>
-            </ul>
-        </nav>
-    </header>
+{% extends 'base.html' %}
 
-    <section>
-        <h2>Desculpe, não conseguimos encontrar a página que você está procurando.</h2>
-        <p>É possível que o link tenha sido digitado incorretamente ou que a página tenha sido removida.</p>
-        <p>Tente voltar para a <a href="{{ url_for('home') }}">página inicial</a> ou use o menu acima para navegar.</p>
-    </section>
+{% block conteudo %}
+<div class="container mt-5"  >
+    <div class="jumbotron text-center">
+        <h1 class="display-4" >Oops! Algo deu errado. {{error_code}} </h1>
+        <h2 class="display-4">Desculpe, não conseguimos encontrar a página que você está procurando.</h2>
+        <p class="lead">É possível que o link tenha sido digitado incorretamente ou que a página tenha sido removida.</p>
+        <p class="lead">Tente voltar para a <a href="{{ url_for('home') }}">página inicial</a> ou use o menu acima para navegar.</p>
+    </div>
+</div>
+{% endblock %}
 
-    <footer>
-        <p>&copy; 2025 Minha Empresa. Todos os direitos reservados.</p>
-    </footer>
-</body>
-</html>
+
