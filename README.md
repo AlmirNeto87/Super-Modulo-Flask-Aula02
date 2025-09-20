@@ -9,42 +9,42 @@ Projeto Baseado na 2ª Aula do Prof. Robson – Creditado mais abaixo no texto.
 ## 📚 Conteúdo da Aula
 
 1. **Revisão da Aula Anterior**
-  -Rotas estáticas e dinâmicas.
-  -Início do CRUD de produtos.
+    -Rotas estáticas e dinâmicas.
+    -Início do CRUD de produtos.
 
 2. **CRUD Completo de Produtos**
-  -Create → Cadastro de produtos.
-  -Read → Listagem dos produtos cadastrados.
-  -Update → Edição de produtos existentes.
-  -Delete → Exclusão de produtos.
+    -Create → Cadastro de produtos.
+    -Read → Listagem dos produtos cadastrados.
+    -Update → Edição de produtos existentes.
+    -Delete → Exclusão de produtos.
 
  3. **CRUD de Usuários**
-  -Cadastro de novos usuários.
-  -Listagem de usuários.
-  -Edição e exclusão de usuários.
-  -Todos os usuários são protegidos e só acessíveis após login.
+    -Cadastro de novos usuários.
+    -Listagem de usuários.
+    -Edição e exclusão de usuários.
+    -Todos os usuários são protegidos e só acessíveis após login.
 
 4. **Introdução ao Bootstrap**
-  -O que é o Bootstrap:
-Um framework front-end que facilita a criação de páginas responsivas e estilosas sem precisar escrever muito CSS.
+    -O que é o Bootstrap:
+    Um framework front-end que facilita a criação de páginas responsivas e estilosas sem precisar escrever muito CSS.
 
-  -Principais recursos usados no projeto:
-    -Grid system (layout responsivo).
-    -Botões estilizados.
-    -Tabelas prontas para listagem de dados.
-    -Formulários organizados e bonitos.
+    -Principais recursos usados no projeto:
+      -Grid system (layout responsivo).
+      -Botões estilizados.
+      -Tabelas prontas para listagem de dados.
+      -Formulários organizados e bonitos.
 
 4. **Integração do Bootstrap com Flask**
-  -Aplicação do Bootstrap em todas as páginas HTML da aplicação.
-  -Exemplo de uso em formulários e tabelas.
+    -Aplicação do Bootstrap em todas as páginas HTML da aplicação.
+    -Exemplo de uso em formulários e tabelas.
 
 5. **Login e Sessão**
-  -Tela de login inicial antes de acessar a aplicação.
-  -Validação de e-mail e senha dos usuários.
-  -Uso de session para manter o usuário logado.
-  -Logout para encerrar a sessão.
-  -Proteção de todas as rotas importantes: produtos, usuários e gestores.
-  -Barra de navegação só aparece quando o usuário está logado.
+    -Tela de login inicial antes de acessar a aplicação.
+    -Validação de e-mail e senha dos usuários.
+    -Uso de session para manter o usuário logado.
+    -Logout para encerrar a sessão.
+    -Proteção de todas as rotas importantes: produtos, usuários e gestores.
+    -Barra de navegação só aparece quando o usuário está logado.
 
 
 ---
