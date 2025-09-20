@@ -136,13 +136,14 @@ def login():
 
 @app.route('/produtos/pesquisar', methods=['GET'])
 def pesquisar_produto():
-    query = request.args.get('q', '').lower()  # pega o texto do input
+    # pega o texto do input
+    query = request.args.get('q', '').lower()  
     if query:
         resultados = [p for p in lista_produtos if query in p['nome'].lower()]
     else:
         return redirect(url_for('listar_produtos'))  # Redireciona para a lista
 
-    return render_template('produto.html', titulo=f"Resultados para '{query}'", produtos=resultados)
+    return render_template('produto.html', titulo=f"Resultados para '{query}'", produto=resultados)
 
 
 #--------------------------------------------------------------------------------

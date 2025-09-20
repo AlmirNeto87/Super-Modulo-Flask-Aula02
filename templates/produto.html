@@ -1,16 +1,30 @@
 {% extends 'base.html' %}
 
 {% block conteudo %}
+<div class="container mt-5">
+    <h2>{{ titulo }}</h2>
+    <hr>
 
-<h1>{{ titulo }}</h1>
-
-<div class="card">
-    <div class="card-body">
-        <h5 class="card-title">{{ produto.name }}</h5>
-        <p class="card-text">Preço: R$ {{ produto.price }}</p>
-        <a class="btn btn-warning" href="{{ url_for('editar_produto', id=produto.id) }}">Editar</a>
-        <a class="btn btn-danger" href="{{ url_for('deletar_produto', id=produto.id) }}">Deletar</a>
-    </div>
+    {% if produto %}
+        <ul class="list-group">
+        {% for p in produto %}
+            <li class="list-group-item">
+                <strong>ID:</strong> {{ p.id }} <br>
+                <strong>Nome:</strong> {{ p.nome }} <br>
+                <strong>Preço:</strong> {{ p.preco }}
+            </li>
+            <li>
+                <a class="btn btn-warning" href="{{ url_for('editar_produto', id=p.id) }}">Editar</a>
+                <a class="btn btn-danger" href="{{ url_for('deletar_produto', id=p.id) }}">Deletar</a>
+            </li>
+        {% endfor %}
+        </ul>
+        
+    {% else %}
+        <p>Nenhum produto encontrado.</p>
+    {% endif %}
+    
 </div>
 
 {% endblock %}
+
