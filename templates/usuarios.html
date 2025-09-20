@@ -1,0 +1,52 @@
+
+
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<div class="container mt-4">
+    <h1>{{titulo}}</h1>
+    
+    <!-- Barra de ações: criar e pesquisar -->
+    <div class="d-flex justify-content-between mb-3">
+        <a href="{{ url_for('cadastrar_usuarios') }}" class="btn btn-success">Cadastrar usuario</a>
+
+        <form class="d-flex" method="GET" action="{{ url_for('pesquisar_usuario') }}">
+            <input class="form-control me-2" type="text" name="q" placeholder="Pesquisar usuario..." value="{{ request.args.get('q', '') }}">
+            <button class="btn btn-primary" type="submit">Pesquisar</button>
+        </form>
+    </div>
+
+    <!-- Lista de usuarios -->
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Senha</th>
+                <th colspan="2"class="text-center" >Ações</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for usuario in usuarios %}
+            <tr>
+                <td>{{ usuario.id}}</td>
+                <td>{{ usuario.nome}}</td>
+                <td>{{ usuario.senha}}</td>
+                <td>
+                    <a class="btn btn-warning" href="{{ url_for('editar_usuario', id=usuario.id)}}">Editar usuario</a>
+                    <a class="btn btn-danger" href="{{ url_for('deletar_usuario', id=usuario.id)}}">Deletar usuario</a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4" class="text-center">
+                    Nenhum Usuario encontrado!
+                </td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+
+</div>
+{% endblock %}

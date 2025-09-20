@@ -165,6 +165,47 @@ def cadastrar_usuarios():
   
   return render_template('cadastrar_usuario.html', titulo="Cadastrar Usuário")
 
+#--------------------------------------------------------------------------------
+#Criacao de rota para exibir os usuarios da lista , mandando a lista de usuarios para a renderizacao do template
+#
+@app.route('/usuarios')
+def listar_usuarios():
+  return render_template('usuarios.html', titulo="Lista de Usuários", usuarios=lista_usuarios)
+
+#--------------------------------------------------------------------------------
+#Criacao de rota para editar usuarios 
+# Formulario para editar usuarios
+# Suporta métodos GET (exibir formulário) e POST (enviar formulário)
+@app.route('/usuarios/editar/<int:id>', methods=['GET','POST'])
+def editar_usuario(id): 
+  usuarioNovo = None
+  for usuario in lista_usuarios:
+    if usuario["id"] == id:
+      usuarioNovo = usuario
+      break  
+  if usuarioNovo is None:
+    return render_template(page_not_found)
+  if request.method =='POST':
+    usuarioNovo["email"] = request.form['email']
+    usuarioNovo["senha"] = request.form['senha']
+    return redirect(url_for('listar_usuarios'))
+  return render_template('editar_usuario.html', usuario = usuarioNovo, titulo="Editar Usuário")
+
+#--------------------------------------------------------------------------------
+#Criacao de rota para deletar usuarios  
+# Tem como parametro o id do usuario a ser deletado
+#--------------------------------------------------------------------------------
+@app.route('/usuarios/deletar/<int:id>')
+def deletar_usuario(id):  
+  usuarioDeletado = None
+  for usuario in lista_usuarios:
+    if usuario["id"] == id:
+      usuarioDeletado = usuario
+      break
+  if usuarioDeletado is None:
+    return render_template(page_not_found)
+  lista_usuarios.remove(usuarioDeletado)
+  return redirect(url_for('listar_usuarios'))
 
 
 #--------------------------------------------------------------------------------

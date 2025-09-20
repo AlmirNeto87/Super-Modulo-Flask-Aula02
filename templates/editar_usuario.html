@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+
+<div class="container mt-5"  >
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Pagina para edicao de usuarios </h1>
+
+      <form method="POST">
+        <label for="emailUsuario">Email do Usuario:</label>
+        <input type="email" id="emailUsuario" name="email" value="{{usuario.email}}" required >
+        <br>
+        <label for="senhaUsuario">Senha do Usuario</label>
+        <input type="password" id="senhaUsuario" name="senha" value="{{usuario.senha}}" required>
+        <br>
+        <button type="submit">Salvar</button>
+        <br>
+         <a href="{{url_for('listar_usuarios')}}">Lista de usuarios</a>
+      </form>  
+
+
+    </div>
+</div>
+
+
+{% endblock %}
+
+
