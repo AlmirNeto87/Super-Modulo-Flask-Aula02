@@ -9,7 +9,7 @@ lista_produtos = [
     {'id': 4, 'nome': 'Bermuda', 'preco': 250.00}
 ]
 
-listagem_usuarios = [
+lista_usuarios = [
     {'id': 1, 'senha': '123456', 'email': 'almirneto@uol.com'},
     ]
 
@@ -103,9 +103,22 @@ def deletar_produto(id):
   lista_produtos.remove(produtoDeletado)
   return redirect(url_for('listar_produtos'))
 
+@app.route('/produtos/pesquisar', methods=['GET'])
+def pesquisar_produto():
+    # pega o texto do input
+    query = request.args.get('q', '').lower()  
+    if query:
+        resultados = [p for p in lista_produtos if query in p['nome'].lower()]
+    else:
+        return redirect(url_for('listar_produtos'))  # Redireciona para a lista
+
+    return render_template('produto.html', titulo=f"Resultados para '{query}'", produto=resultados)
+
 
 #--------------------------------------------------------------------------------
 #Criacao de rota para a pagina login
+# Formulario para login
+# Suporta métodos GET (exibir formulário) e POST (enviar formulário)
 #--------------------------------------------------------------------------------
 @app.route('/', methods=['GET', 'POST'])
 def login():
@@ -117,7 +130,7 @@ def login():
     senha = request.form.get('senha')
 
     # Procura na lista de usuários se existe algum com esse email e senha
-    for user in listagem_usuarios:
+    for user in lista_usuarios:
       if user["email"] == email and user["senha"] == senha:
         usuario = user   # Se encontrou, guarda o usuário
         break         # Para o loop (não precisa continuar procurando)
@@ -133,17 +146,25 @@ def login():
   # Se for GET ou se o login falhar, renderiza a página de login
   return render_template('login.html', titulo="Login", loginErro=loginErro)
 
+#--------------------------------------------------------------------------------
+#Criacao de rota para cadastrar usuarios  
+# Formulario para cadastrar usuarios
+# Suporta métodos GET (exibir formulário) e POST (enviar formulário)
+@app.route('/usuarios/cadastro', methods=['GET', 'POST'])
+def cadastrar_usuarios():
 
-@app.route('/produtos/pesquisar', methods=['GET'])
-def pesquisar_produto():
-    # pega o texto do input
-    query = request.args.get('q', '').lower()  
-    if query:
-        resultados = [p for p in lista_produtos if query in p['nome'].lower()]
-    else:
-        return redirect(url_for('listar_produtos'))  # Redireciona para a lista
+  if request.method == 'POST':
+    novoUsuario = {
+      # Funcao para preencher o id com o numero maior de id que tiver dentro da lista e caso nao encontre nenhum coloca como default =0
+      "id":max([user["id"] for user in lista_usuarios],default=0) + 1,
+      "senha": request.form["senha"],
+      "email": request.form["email"]
+    }
+    lista_usuarios.append(novoUsuario)
+    return redirect (url_for('home',MSG="Usuário "+ novoUsuario['email']  +" cadastrado com sucesso!"))
+  
+  return render_template('cadastrar_usuario.html', titulo="Cadastrar Usuário")
 
-    return render_template('produto.html', titulo=f"Resultados para '{query}'", produto=resultados)
 
 
 #--------------------------------------------------------------------------------

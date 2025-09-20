@@ -8,5 +8,9 @@
         <p class="lead">Explore nosso site e descubra mais sobre os nossos serviços e como podemos ajudar o seu negócio a crescer.</p>
         <hr>
     </div>
+    {% if MSG %}
+    <h2 class="display-4" >Usuario Cadastrado com Sucesso</h2>
+    <p class="lead" >{{MSG}}</p>
+    {% endif %}
 </div>
 {% endblock %}
