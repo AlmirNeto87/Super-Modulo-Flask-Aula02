@@ -8,7 +8,6 @@ Projeto Baseado na 2ª Aula do Prof. Robson – Creditado mais abaixo no texto.
 
 ## 📚 Conteúdo da Aula
 
-
 1. **Revisão da Aula Anterior**
   -Rotas estáticas e dinâmicas.
   -Início do CRUD de produtos.
@@ -39,7 +38,7 @@ Um framework front-end que facilita a criação de páginas responsivas e estilo
   -Aplicação do Bootstrap em todas as páginas HTML da aplicação.
   -Exemplo de uso em formulários e tabelas.
 
-5.**Login e Sessão**
+5. **Login e Sessão**
   -Tela de login inicial antes de acessar a aplicação.
   -Validação de e-mail e senha dos usuários.
   -Uso de session para manter o usuário logado.
