@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+<h1>{{ titulo }}</h1>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{ produto.name }}</h5>
+        <p class="card-text">Preço: R$ {{ produto.price }}</p>
+        <a class="btn btn-warning" href="{{ url_for('editar_produto', id=produto.id) }}">Editar</a>
+        <a class="btn btn-danger" href="{{ url_for('deletar_produto', id=produto.id) }}">Deletar</a>
+    </div>
+</div>
+
+{% endblock %}

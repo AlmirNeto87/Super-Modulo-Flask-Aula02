@@ -134,6 +134,16 @@ def login():
   return render_template('login.html', titulo="Login", loginErro=loginErro)
 
 
+@app.route('/produtos/pesquisar', methods=['GET'])
+def pesquisar_produto():
+    query = request.args.get('q', '').lower()  # pega o texto do input
+    if query:
+        resultados = [p for p in lista_produtos if query in p['nome'].lower()]
+    else:
+        return redirect(url_for('listar_produtos'))  # Redireciona para a lista
+
+    return render_template('produto.html', titulo=f"Resultados para '{query}'", produtos=resultados)
+
 
 #--------------------------------------------------------------------------------
 # Cria uma rota para caminhos inexistentes 
