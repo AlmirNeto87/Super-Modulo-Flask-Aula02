@@ -8,12 +8,18 @@ lista_produtos = [
     {'id': 3, 'nome': 'Calça Jeans', 'preco': 30.00},
     {'id': 4, 'nome': 'Bermuda', 'preco': 250.00}
 ]
+
+listagem_usuarios = [
+    {'id': 1, 'senha': '123456', 'email': 'almirneto@uol.com'},
+    ]
+
+
 #-----------------------------------------------------------------------------
 #Criacao de ROTAS (routes)
 #Para criar mais de uma rota para o mesmo caminho basta deixas juntas
 # funcao render_template e usada para renderizar pagina html
 #-----------------------------------------------------------------------------
-@app.route('/')
+
 @app.route('/home')
 def home():
 # E Possivel passar variaveis com descontrucao para a pagina que sta sendo rendenrizada 
@@ -96,6 +102,38 @@ def deletar_produto(id):
     return render_template(page_not_found)
   lista_produtos.remove(produtoDeletado)
   return redirect(url_for('listar_produtos'))
+
+
+#--------------------------------------------------------------------------------
+#Criacao de rota para a pagina login
+#--------------------------------------------------------------------------------
+@app.route('/', methods=['GET', 'POST'])
+def login():
+  loginErro = None
+  usuario = None
+  if request.method == 'POST':
+    # Pega os dados enviados pelo formulário
+    email = request.form.get('email')
+    senha = request.form.get('senha')
+
+    # Procura na lista de usuários se existe algum com esse email e senha
+    for user in listagem_usuarios:
+      if user["email"] == email and user["senha"] == senha:
+        usuario = user   # Se encontrou, guarda o usuário
+        break         # Para o loop (não precisa continuar procurando)
+
+  # Se encontrou o usuário, redireciona para a home
+    if usuario:
+      return redirect(url_for('home'))
+    else:
+  
+      # Se não encontrou, mostra mensagem de erro
+      loginErro = "E-mail ou senha incorretos."
+
+  # Se for GET ou se o login falhar, renderiza a página de login
+  return render_template('login.html', titulo="Login", loginErro=loginErro)
+
+
 
 #--------------------------------------------------------------------------------
 # Cria uma rota para caminhos inexistentes 
