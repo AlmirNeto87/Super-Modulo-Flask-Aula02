@@ -1,7 +1,7 @@
 # 🐍 Super Módulo Flask - Aula 02
 
-Bem-vindo ao **Super Módulo Flask Aula 02**, um projeto de continuação em **Python** utilizando a biblioteca **Flask**.
-Nesta etapa, evoluímos o que foi feito na aula anterior, completando o **CRUD** de Produtos e aplicando **Bootstrap** em todas as páginas HTML para dar mais estilo e responsividade à aplicação.
+Bem-vindo ao Super Módulo Flask Aula 02, um projeto de continuação em Python utilizando a biblioteca Flask.
+Nesta etapa, evoluímos o que foi feito na aula anterior, completando o CRUD de Produtos, adicionando CRUD de Usuários, implementando Login com sessão e aplicando Bootstrap em todas as páginas HTML para uma interface moderna e responsiva.
 
 Projeto Baseado na 2ª Aula do Prof. Robson – Creditado mais abaixo no texto.
 ---
@@ -19,7 +19,13 @@ Projeto Baseado na 2ª Aula do Prof. Robson – Creditado mais abaixo no texto.
   -Update → Edição de produtos existentes.
   -Delete → Exclusão de produtos.
 
-3. **Introdução ao Bootstrap**
+ 3. **CRUD de Usuários**
+  -Cadastro de novos usuários.
+  -Listagem de usuários.
+  -Edição e exclusão de usuários.
+  -Todos os usuários são protegidos e só acessíveis após login.
+
+4. **Introdução ao Bootstrap**
   -O que é o Bootstrap:
 Um framework front-end que facilita a criação de páginas responsivas e estilosas sem precisar escrever muito CSS.
 
@@ -32,6 +38,15 @@ Um framework front-end que facilita a criação de páginas responsivas e estilo
 4. **Integração do Bootstrap com Flask**
   -Aplicação do Bootstrap em todas as páginas HTML da aplicação.
   -Exemplo de uso em formulários e tabelas.
+
+5.**Login e Sessão**
+  -Tela de login inicial antes de acessar a aplicação.
+  -Validação de e-mail e senha dos usuários.
+  -Uso de session para manter o usuário logado.
+  -Logout para encerrar a sessão.
+  -Proteção de todas as rotas importantes: produtos, usuários e gestores.
+  -Barra de navegação só aparece quando o usuário está logado.
+
 
 ---
 
@@ -92,6 +107,14 @@ Para adicionar o Bootstrap às páginas HTML, basta inserir o link CDN dentro da
 
 
 # Com isso, todas as suas páginas Flask já podem aproveitar a mágica do Bootstrap 🎉.
+
+## 🔒 Funcionalidades de Login e Sessão
+
+  -O login é a primeira rota do site, garantindo que o usuário esteja autenticado antes de acessar a aplicação.
+  -Após login bem-sucedido, o usuário é redirecionado para a home.
+  -Logout encerra a sessão, protegendo rotas como /produtos e /usuarios.
+  -A barra de navegação só aparece se o usuário estiver logado.
+  -Rotas protegidas incluem CRUD de produtos e usuários.
 
 ## 👨‍🏫 Créditos
 
