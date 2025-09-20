@@ -34,7 +34,7 @@
                 <td>{{ produto.nome}}</td>
                 <td>{{ produto.preco|round(2)}}</td>
                 <td>
-                    <a class="btn btn-primary" href="{{ url_for('editar_produto', id=produto.id)}}">Editar Produto</a>
+                    <a class="btn btn-warning" href="{{ url_for('editar_produto', id=produto.id)}}">Editar Produto</a>
                     <a class="btn btn-danger" href="{{ url_for('deletar_produto', id=produto.id)}}">Deletar Produto</a>
                 </td>
             </tr>
