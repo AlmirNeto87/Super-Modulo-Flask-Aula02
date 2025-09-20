@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<div class="container mt-5">
+    <h2>{{ titulo }}</h2>
+    <hr>
+
+    {% if usuarios %}
+        <ul class="list-group">
+        {% for usuario in usuarios %}
+            <li class="list-group-item">
+                <strong>ID:</strong> {{ usuario.id }} <br>
+                <strong>Email:</strong> {{ usuario.email }} <br>
+                <strong>senha:</strong> {{ usuario.senha }}
+            </li>
+            <li>
+                <a class="btn btn-warning" href="{{ url_for('editar_usuario', id=usuario.id) }}">Editar</a>
+                <a class="btn btn-danger" href="{{ url_for('deletar_usuario', id=usuario.id) }}">Deletar</a>
+            </li>
+        {% endfor %}
+        </ul>
+        
+    {% else %}
+        <p>Nenhum usuario encontrado.</p>
+    {% endif %}
+    
+</div>
+
+{% endblock %}
+

@@ -207,6 +207,19 @@ def deletar_usuario(id):
   lista_usuarios.remove(usuarioDeletado)
   return redirect(url_for('listar_usuarios'))
 
+#--------------------------------------------------------------------------------
+#Criacao de rota para pesquisar usuarios  
+#--------------------------------------------------------------------------------
+@app.route('/usuarios/pesquisar', methods=['GET'])  
+def pesquisar_usuario():
+    # pega o texto do input
+    query = request.args.get('q', '').lower()  
+    if query:
+        resultados = [u for u in lista_usuarios if query in u['email'].lower()]
+    else:
+        return redirect(url_for('listar_usuarios'))  # Redireciona para a lista
+
+    return render_template('usuario.html', titulo=f"Resultados para '{query}'", usuarios=resultados)
 
 #--------------------------------------------------------------------------------
 # Cria uma rota para caminhos inexistentes 
