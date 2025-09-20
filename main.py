@@ -1,6 +1,11 @@
-from flask import Flask, render_template,request, redirect, url_for
+from flask import Flask, render_template,request, redirect, url_for, session
+from functools import wraps
+
 #Instanciando o objeto Flask a variavel app
 app = Flask(__name__)
+# use algo forte em produção
+app.secret_key = "senha_super_secreta"  
+
 
 lista_produtos = [
     {'id': 1, 'nome': 'Camisa ', 'preco': 50.00},
@@ -14,6 +19,18 @@ lista_usuarios = [
     ]
 
 
+#--------------------------------------------------------------------------------
+# Decorator para proteger rotas que exigem login
+#--------------------------------------------------------------------------------
+def login_obrigatorio(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'usuario' not in session:
+            return redirect(url_for('login'))
+        return f(*args, **kwargs)
+    return decorated_function
+
+
 #-----------------------------------------------------------------------------
 #Criacao de ROTAS (routes)
 #Para criar mais de uma rota para o mesmo caminho basta deixas juntas
@@ -21,6 +38,7 @@ lista_usuarios = [
 #-----------------------------------------------------------------------------
 
 @app.route('/home')
+@login_obrigatorio
 def home():
 # E Possivel passar variaveis com descontrucao para a pagina que sta sendo rendenrizada 
   return render_template('index.html',titulo ="Home Page")
@@ -29,6 +47,7 @@ def home():
 #Criacao de rota para a pagina sobre
 #--------------------------------------------------------------------------------
 @app.route('/sobre')
+@login_obrigatorio
 def sobre():
   return render_template('sobre.html',titulo ="Sobre")
 
@@ -36,6 +55,7 @@ def sobre():
 #Criacao de rota para a pagina contatos
 #--------------------------------------------------------------------------------
 @app.route('/contatos')
+@login_obrigatorio
 def contatos():
   return render_template('contatos.html', titulo="Contatos")
 
@@ -45,6 +65,7 @@ def contatos():
 #Rota para exibir os produtos da lista , mandando a lista de produtos para a renderizacao do template
 #--------------------------------------------------------------------------------
 @app.route('/produtos')
+@login_obrigatorio
 def listar_produtos():
   return render_template('produtos.html', titulo="Lista de Produtos", produtos=lista_produtos)
 
@@ -54,6 +75,7 @@ def listar_produtos():
 # Suporta métodos GET (exibir formulário) e POST (enviar formulário)
 #--------------------------------------------------------------------------------
 @app.route('/produtos/cadastro', methods=['GET', 'POST'])
+@login_obrigatorio
 def cadastrar_produtos():
   if request.method == 'POST':
     novoProduto = {
@@ -73,6 +95,7 @@ def cadastrar_produtos():
 # Suporta métodos GET (exibir formulário) e POST (enviar formulário)
 #--------------------------------------------------------------------------------
 @app.route('/produtos/editar/<int:id>', methods=['GET','POST'])
+@login_obrigatorio
 def editar_produto(id):
   produtoNovo = None
   for produto in lista_produtos:
@@ -92,6 +115,7 @@ def editar_produto(id):
 # Tem como parametro o id do produto a ser deletado
 #--------------------------------------------------------------------------------
 @app.route('/produtos/deletar/<int:id>')
+@login_obrigatorio
 def deletar_produto(id):
   produtoDeletado = None
   for produto in lista_produtos:
@@ -104,6 +128,7 @@ def deletar_produto(id):
   return redirect(url_for('listar_produtos'))
 
 @app.route('/produtos/pesquisar', methods=['GET'])
+@login_obrigatorio
 def pesquisar_produto():
     # pega o texto do input
     query = request.args.get('q', '').lower()  
@@ -137,6 +162,8 @@ def login():
 
   # Se encontrou o usuário, redireciona para a home
     if usuario:
+      # salva o login na sessão
+      session['usuario'] = usuario['email'] 
       return redirect(url_for('home'))
     else:
   
@@ -145,6 +172,15 @@ def login():
 
   # Se for GET ou se o login falhar, renderiza a página de login
   return render_template('login.html', titulo="Login", loginErro=loginErro)
+
+#--------------------------------------------------------------------------------
+#Criacao de rota para logout
+#--------------------------------------------------------------------------------
+@app.route('/logout')
+def logout():
+    session.pop('usuario', None)
+    return redirect(url_for('login'))
+
 
 #--------------------------------------------------------------------------------
 #Criacao de rota para cadastrar usuarios  
@@ -169,6 +205,7 @@ def cadastrar_usuarios():
 #Criacao de rota para exibir os usuarios da lista , mandando a lista de usuarios para a renderizacao do template
 #
 @app.route('/usuarios')
+@login_obrigatorio
 def listar_usuarios():
   return render_template('usuarios.html', titulo="Lista de Usuários", usuarios=lista_usuarios)
 
@@ -177,6 +214,7 @@ def listar_usuarios():
 # Formulario para editar usuarios
 # Suporta métodos GET (exibir formulário) e POST (enviar formulário)
 @app.route('/usuarios/editar/<int:id>', methods=['GET','POST'])
+@login_obrigatorio
 def editar_usuario(id): 
   usuarioNovo = None
   for usuario in lista_usuarios:
@@ -196,6 +234,7 @@ def editar_usuario(id):
 # Tem como parametro o id do usuario a ser deletado
 #--------------------------------------------------------------------------------
 @app.route('/usuarios/deletar/<int:id>')
+@login_obrigatorio
 def deletar_usuario(id):  
   usuarioDeletado = None
   for usuario in lista_usuarios:
@@ -211,6 +250,7 @@ def deletar_usuario(id):
 #Criacao de rota para pesquisar usuarios  
 #--------------------------------------------------------------------------------
 @app.route('/usuarios/pesquisar', methods=['GET'])  
+@login_obrigatorio
 def pesquisar_usuario():
     # pega o texto do input
     query = request.args.get('q', '').lower()  
