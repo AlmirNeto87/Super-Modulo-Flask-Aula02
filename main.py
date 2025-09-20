@@ -177,6 +177,7 @@ def login():
 #Criacao de rota para logout
 #--------------------------------------------------------------------------------
 @app.route('/logout')
+@login_obrigatorio
 def logout():
     session.pop('usuario', None)
     return redirect(url_for('login'))
